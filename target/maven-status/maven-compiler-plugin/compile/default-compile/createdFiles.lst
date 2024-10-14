@@ -1,0 +1,3 @@
+com/example/App.class
+com/example/commands/AppCommands.class
+com/example/generators/SpringBootGenerator.class
