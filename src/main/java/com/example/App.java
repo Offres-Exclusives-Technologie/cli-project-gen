@@ -2,6 +2,8 @@ package com.example;
 
 import java.io.IOException;
 
+import com.example.generators.SpringBootGenerator;
+
 import freemarker.template.TemplateException;
 
 

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.generators;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
