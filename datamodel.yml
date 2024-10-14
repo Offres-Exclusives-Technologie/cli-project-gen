@@ -1,0 +1,28 @@
+projectName: My Spring Boot Project
+groupId: com.example
+artifactId: my-spring-boot-project
+packageName: com.example.myproject
+description: A generated Spring Boot project
+
+entities:
+  - name: User
+    attributes:
+      - name: id
+        type: Long
+      - name: username
+        type: String
+      - name: email
+        type: String
+      - name: password
+        type: String
+
+  - name: Product
+    attributes:
+      - name: id
+        type: Long
+      - name: name
+        type: String
+      - name: description
+        type: String
+      - name: price
+        type: BigDecimal
