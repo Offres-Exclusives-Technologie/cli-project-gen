@@ -12,16 +12,22 @@ import java.util.List;
 import java.util.Map;
 
 public class SpringBootGenerator {
+
     private final String projectDir;
     private final Map<String, Object> dataModel;
     private final Configuration freemarkerConfig;
+    private boolean docker = false;
+    private boolean security = false;
+    private boolean mysql = false;
 
-    public SpringBootGenerator(String projectDir, String yamlPath) throws IOException {
+    public SpringBootGenerator(String projectDir, String yamlPath, boolean docker, boolean security, boolean mysql) throws IOException {
         this.projectDir = projectDir;
         this.dataModel = loadYamlFile(yamlPath);
-        
+        this.docker = docker;
+        this.security = security;
+        this.mysql = mysql;
         this.freemarkerConfig = new Configuration(Configuration.VERSION_2_3_31);
-        this.freemarkerConfig.setClassLoaderForTemplateLoading(getClass().getClassLoader(), "com/example/template");
+        this.freemarkerConfig.setClassLoaderForTemplateLoading(getClass().getClassLoader(), "com/example/template/springbootTemplate");
     }
 
     private Map<String, Object> loadYamlFile(String yamlPath) throws IOException {
@@ -35,6 +41,10 @@ public class SpringBootGenerator {
         createDirectories();
         generateFile("pom.xml.ftl", "pom.xml");
         generateFile("application.properties.ftl", "src/main/resources/application.properties");
+
+        // Docker file
+        if(docker) 
+          generateFile("Dockerfile.ftl", "Dockerfile");
 
         // Entrypoint
         generateEntryPoint("Application.java.ftl");
